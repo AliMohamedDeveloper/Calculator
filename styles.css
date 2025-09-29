@@ -1,0 +1,31 @@
+#container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#containerDiv {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Button gaps */
+.numBtn {
+    margin: 2px;
+}
+
+/* Button positioning */
+#a0, #a1, #a2, #a3 {
+    margin-bottom: -199px;
+    margin-top: 0px;
+}
+
+#a4, #a5, #a6 {
+    margin-bottom: 9px;
+    margin-top: 0px;
+}
+
+#a7, #a8, #a9 {
+    margin-top: 140px;
+}
