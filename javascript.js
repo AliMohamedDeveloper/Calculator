@@ -68,22 +68,174 @@ divBottomHalf.appendChild(buttonRow3);
 
 buttonRow3.appendChild(btn0);
 
+//+
+const PlusBtn = document.createElement("button");
+    PlusBtn.id = "plus";
+    PlusBtn.style.height = "40px";
+    PlusBtn.style.width = "40px";
+    PlusBtn.textContent = "+";
+ 
+    PlusBtn.classList.add("PlusBtn");
+    container.appendChild(PlusBtn);
 
-function add(){
+//-
+const minusBtn = document.createElement("button");
+    minusBtn.id = "minus";
+    minusBtn.style.height = "40px";
+    minusBtn.style.width = "40px";
+    minusBtn.textContent = "-";
+ 
+    minusBtn.classList.add("minusBtn");
+    container.appendChild(minusBtn);
 
+
+// divide
+const divideBtn = document.createElement("button");
+    divideBtn.id = "divide";
+    divideBtn.style.height = "40px";
+    divideBtn.style.width = "40px";
+    divideBtn.textContent = "÷";
+ 
+    divideBtn.classList.add("divideBtn");
+    container.appendChild(divideBtn);
+
+//mutliply
+
+
+const multiplyBtn = document.createElement("button");
+    multiplyBtn.id = "multiply";
+    multiplyBtn.style.height = "40px";
+    multiplyBtn.style.width = "40px";
+    multiplyBtn.textContent = "*";
+ 
+    multiplyBtn.classList.add("multiplyBtn");
+    container.appendChild(multiplyBtn);
+
+    const equalsBtn = document.createElement("button");
+    equalsBtn.id = "equals";
+    equalsBtn.style.height = "40px";
+    equalsBtn.style.width = "40px";
+    equalsBtn.textContent = "=";
+ 
+    equalsBtn.classList.add("equalsBtn");
+    container.appendChild(equalsBtn);
+
+     
+
+    const display = document.createElement("div");
+    display.id = "displayDash";
+    display.style.height = "150px";
+    display.style.width = "250px";
+    display.style.backgroundColor = "#cdb4db"
+    display.classList.add("display");
+    divBottomHalf.appendChild(display);
+    
+
+
+
+
+    function operator(numA, symbol , numB){
+
+        symbol = PlusBtn.textContent ;
+
+        if (symbol== "+"){
+
+            return ( add(numA , numB));
+        }
+        else if ( symbol=="-"){
+            return ( subtract(numA,numB));
+        }
+
+        else if ( symbol=="*"){
+            return ( multiply(numA,numB));
+        }
+
+        else if ( symbol=="÷"){
+            return ( divide(numA,numB));
+        }
+
+        
+
+    }
+
+
+
+    // display.textContent = btn1.textContent;
+const buttons = document.querySelectorAll("button");
+ 
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", doSomething);
 }
 
+function doSomething(event) {
+    const clickedButton = event.target;
+    display.textContent += clickedButton.textContent;
+    let val = clickedButton.textContent;
+}
 
-function subtract(){
+equalsBtn.addEventListener("click", calculate);
+
+function calculate(event) {
+    
+    return (display.textContent = operator(Number(lastClickedButtonValue.textContent),PlusBtn.textContent,Number(btn1.textContent)));
+}
+let buttonsclicked = [];
+buttons.forEach(button => {
+    button.addEventListener('click', function(event) {
+        const numValue = Number(button.textContent);
+        
+        if (!isNaN(numValue)) {
+            buttonsclicked.push(numValue);
+        }
+        
+        lastClickedButtonValue = event.target.textContent;
+        console.log(buttonsclicked);
+    });
+});
+
+let expression = '';
+
+buttons.forEach(button => {
+    button.addEventListener('click', function(event) {
+        const value = button.textContent;
+        
+        if (button.id === 'equals') {
+            // Evaluate the mathematical expression
+            try {
+                const result = eval(expression.replace('÷', '/'));
+                display.textContent = result;
+                expression = result.toString(); // Keep result for next operation
+            } catch (error) {
+                display.textContent = 'Error';
+                expression = '';
+            }
+        } else {
+            // Build the expression
+            expression += value;
+            display.textContent = expression;
+        }
+    });
+});
+    
+    function add(a , b){
+
+        return a+b;
+
+}
+    function subtract(a , b){
+
+        return a-b;
+    
+}
+
+    function multiply(a,b){
+
+        return a*b;
     
 }
 
 
-function multiply(){
-    
-}
-
-
-function divide(){
+    function divide(a,b){
+        return a/b;
     
 }

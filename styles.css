@@ -29,3 +29,47 @@
 #a7, #a8, #a9 {
     margin-top: 140px;
 }
+
+#plus   {
+    margin-left:-115px;
+    margin-top: 350px;
+}
+
+#minus {
+  margin-top: 350px;
+
+      margin-left:-90px;
+
+
+}
+
+
+#divide{
+      margin-top: 410px;
+            margin-left:-40px;
+
+
+}
+
+#multiply{
+    margin-top: 410px;
+    margin-left:10px;
+
+    
+}
+
+#equals{
+
+    margin-top: 410px;
+    margin-left: 30px;
+}
+
+#BottomHalf{
+    margin-left: 40px;
+}
+
+#displayDash{
+
+     
+    margin-top: -400px;
+   }
