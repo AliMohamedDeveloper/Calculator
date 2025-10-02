@@ -1,7 +1,7 @@
 const container = document.querySelector("#container");
 
 const divC = document.createElement("div");
-divC.style.backgroundColor = "#e5e5e5";
+divC.style.backgroundColor = "#05B29F";
 divC.id = "containerDiv";
 divC.style.height = "500px";
 divC.style.width = "400px";
@@ -119,6 +119,28 @@ const multiplyBtn = document.createElement("button");
  
     equalsBtn.classList.add("equalsBtn");
     container.appendChild(equalsBtn);
+
+    //clear button
+
+    const clearBtn = document.createElement("button");
+    clearBtn.id = "clear";
+    clearBtn.style.height = "40px";
+    clearBtn.style.width = "40px";
+    clearBtn.textContent = "Clear";
+ 
+    clearBtn.classList.add("clearBtn");
+    container.appendChild(clearBtn);
+
+
+    clearBtn.addEventListener("click" , clearDisplay);
+
+
+    function clearDisplay(event){
+
+
+        return(display.textContent = null);
+
+    }
 
      
 
