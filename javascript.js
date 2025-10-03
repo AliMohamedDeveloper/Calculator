@@ -245,7 +245,8 @@ buttons.forEach(button => {
             // Evaluate the mathematical expression
             try {
                 const result = eval(expression.replace('÷', '/'));
-                display.textContent = result;
+                const roundedNumber = Math.round(result * 100) / 100;
+                display.textContent = roundedNumber;
                 expression = result.toString(); // Keep result for next operation
             } catch (error) {
                 display.textContent = 'Error';
