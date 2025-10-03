@@ -3,8 +3,9 @@ const container = document.querySelector("#container");
 const divC = document.createElement("div");
 divC.style.backgroundColor = "#05B29F";
 divC.id = "containerDiv";
-divC.style.height = "500px";
-divC.style.width = "400px";
+divC.style.height = "400px";
+divC.style.borderRadius = "15px"
+divC.style.width = "300px";
 divC.classList.add("divC");
 container.appendChild(divC);
 
@@ -19,7 +20,7 @@ for (let i = 0; i <= 9; i++) {
     const numBtn = document.createElement("button");
     numBtn.id = "number";
     numBtn.style.height = "40px";
-    numBtn.style.width = "40px";
+    numBtn.style.width = "60px";
     numBtn.textContent = i;
     numBtn.id = `a${i}`;
     numBtn.classList.add("numBtn");
@@ -68,11 +69,21 @@ divBottomHalf.appendChild(buttonRow3);
 
 buttonRow3.appendChild(btn0);
 
-//+
+
+ const buttonRow4 = document.createElement("div");
+ buttonRow4.id = "BottomHalfR3";
+buttonRow3.style.height = "40px";
+buttonRow3.style.width = "300px";
+buttonRow3.classList.add("buttonRow3");
+divBottomHalf.appendChild(buttonRow3);
+
+buttonRow3.appendChild(btn0);
+
+ 
 const PlusBtn = document.createElement("button");
     PlusBtn.id = "plus";
     PlusBtn.style.height = "40px";
-    PlusBtn.style.width = "40px";
+    PlusBtn.style.width = "60px";
     PlusBtn.textContent = "+";
  
     PlusBtn.classList.add("PlusBtn");
@@ -82,7 +93,7 @@ const PlusBtn = document.createElement("button");
 const minusBtn = document.createElement("button");
     minusBtn.id = "minus";
     minusBtn.style.height = "40px";
-    minusBtn.style.width = "40px";
+    minusBtn.style.width = "60px";
     minusBtn.textContent = "-";
  
     minusBtn.classList.add("minusBtn");
@@ -93,7 +104,7 @@ const minusBtn = document.createElement("button");
 const divideBtn = document.createElement("button");
     divideBtn.id = "divide";
     divideBtn.style.height = "40px";
-    divideBtn.style.width = "40px";
+    divideBtn.style.width = "60px";
     divideBtn.textContent = "÷";
  
     divideBtn.classList.add("divideBtn");
@@ -105,7 +116,7 @@ const divideBtn = document.createElement("button");
 const multiplyBtn = document.createElement("button");
     multiplyBtn.id = "multiply";
     multiplyBtn.style.height = "40px";
-    multiplyBtn.style.width = "40px";
+    multiplyBtn.style.width = "60px";
     multiplyBtn.textContent = "*";
  
     multiplyBtn.classList.add("multiplyBtn");
@@ -113,8 +124,8 @@ const multiplyBtn = document.createElement("button");
 
     const equalsBtn = document.createElement("button");
     equalsBtn.id = "equals";
-    equalsBtn.style.height = "40px";
-    equalsBtn.style.width = "40px";
+    equalsBtn.style.height = "90px";
+    equalsBtn.style.width = "60px";
     equalsBtn.textContent = "=";
  
     equalsBtn.classList.add("equalsBtn");
@@ -124,30 +135,28 @@ const multiplyBtn = document.createElement("button");
 
     const clearBtn = document.createElement("button");
     clearBtn.id = "clear";
-    clearBtn.style.height = "40px";
-    clearBtn.style.width = "40px";
+    clearBtn.style.height = "70px";
+    clearBtn.style.width = "100px";
     clearBtn.textContent = "Clear";
  
     clearBtn.classList.add("clearBtn");
     container.appendChild(clearBtn);
 
 
-    clearBtn.addEventListener("click" , clearDisplay);
+ clearBtn.addEventListener("click", clearDisplay);
 
-
-    function clearDisplay(event){
-
-
-        return(display.textContent = null);
-
-    }
-
+function clearDisplay(event){
+    event.preventDefault(); // Prevent default button behavior
+    display.textContent = "0"; // Reset to 0 instead of null
+    expression = ''; // Also clear the expression if you have one
+}
      
 
     const display = document.createElement("div");
     display.id = "displayDash";
-    display.style.height = "150px";
+    display.style.height = "78px";
     display.style.width = "250px";
+    display.style.borderRadius = "20px";
     display.style.backgroundColor = "#cdb4db"
     display.classList.add("display");
     divBottomHalf.appendChild(display);
@@ -180,8 +189,8 @@ const multiplyBtn = document.createElement("button");
 
     }
 
-
-
+ 
+ 
     // display.textContent = btn1.textContent;
 const buttons = document.querySelectorAll("button");
  
@@ -191,6 +200,12 @@ for (let i = 0; i < buttons.length; i++) {
 
 function doSomething(event) {
     const clickedButton = event.target;
+    
+    // Add these two lines to skip equals button too
+    if (clickedButton.id === 'clear' || clickedButton.id === 'equals') {
+        return;
+    }
+    
     display.textContent += clickedButton.textContent;
     let val = clickedButton.textContent;
 }
@@ -220,8 +235,13 @@ let expression = '';
 buttons.forEach(button => {
     button.addEventListener('click', function(event) {
         const value = button.textContent;
+
+          // ✅ Skip clear and equals buttons
+        if (button.id === 'clear') {
+            return null;
+        }
         
-        if (button.id === 'equals') {
+        else if (button.id === 'equals') {
             // Evaluate the mathematical expression
             try {
                 const result = eval(expression.replace('÷', '/'));
